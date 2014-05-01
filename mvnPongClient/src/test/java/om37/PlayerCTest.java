@@ -9,6 +9,7 @@ import common.GameObject;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import org.jcheck.*;
 
 //Added by me
 import org.junit.*;
