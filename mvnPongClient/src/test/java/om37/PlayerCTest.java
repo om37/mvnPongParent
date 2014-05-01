@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import common.GameObject;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
@@ -13,7 +14,7 @@ import junit.framework.TestSuite;
 import org.junit.*;
 
 import common.Global;
-
+import org.mockito.*;
 import junit.*;
 
 /**
@@ -22,17 +23,61 @@ import junit.*;
 public class PlayerCTest 
 {
 	PlayerC playerUnderTest;
+    @Mock PlayerC mockPlayer;
+    @Mock  C_PongModel mockModel;
+    @Mock Socket mockSocket;
+
     public PlayerCTest()
     {
-    	
+
     }
 
     @Before
     public void setup() throws Exception
     {
+        MockitoAnnotations.initMocks(this);
     	playerUnderTest = new PlayerC(new C_PongModel(), new Socket());
-    }    
-    
+    }
+
+    @Test
+    public void testBallXY()
+    {
+        playerUnderTest = new PlayerC(mockModel, mockSocket);
+        ArgumentCaptor<GameObject> ballCaptor = ArgumentCaptor.forClass(GameObject.class);
+        String[] values = new String[]{"0", "1", "2", "3", "4", "5"};
+        playerUnderTest.parseDataFromServer(values);
+
+        Mockito.verify(mockModel).setBall(ballCaptor.capture());
+        Assert.assertEquals(ballCaptor.getValue().getX(),Double.parseDouble(values[0]),0);
+        Assert.assertEquals(ballCaptor.getValue().getY(),Double.parseDouble(values[1]),0);
+    }
+
+    @Test
+    public void testBatZeroXY()
+    {
+        playerUnderTest = new PlayerC(mockModel, mockSocket);
+        ArgumentCaptor<GameObject[]> batCaptor = ArgumentCaptor.forClass(GameObject[].class);
+        String[] values = new String[]{"0", "1", "2", "3", "4", "5"};
+        playerUnderTest.parseDataFromServer(values);
+
+        Mockito.verify(mockModel).setBats(batCaptor.capture());
+        Assert.assertEquals(batCaptor.getValue()[0].getX(),Double.parseDouble(values[2]),0);
+        Assert.assertEquals(batCaptor.getValue()[0].getY(),Double.parseDouble(values[3]),0);
+    }
+
+    @Test
+    public void testBatOneXY()
+    {
+        playerUnderTest = new PlayerC(mockModel, mockSocket);
+        ArgumentCaptor<GameObject[]> batCaptor = ArgumentCaptor.forClass(GameObject[].class);
+        String[] values = new String[]{"0", "1", "2", "3", "4", "5"};
+        playerUnderTest.parseDataFromServer(values);
+
+        Mockito.verify(mockModel).setBats(batCaptor.capture());
+        Assert.assertEquals(batCaptor.getValue()[1].getX(),Double.parseDouble(values[4]),0);
+        Assert.assertEquals(batCaptor.getValue()[1].getY(),Double.parseDouble(values[5]),0);
+    }
+
     @Test
     public void testParseDataFromServer()
     {

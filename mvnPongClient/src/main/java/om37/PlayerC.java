@@ -110,7 +110,9 @@ class PlayerC extends Thread
 
 		//Send to model:
 		model.setBall(newBall);
-		model.setBats(newBats);
+		model.setBat(0, newBats[0]);
+        model.setBat(1, newBats[1]);
+        model.setBats(newBats);
 	}
 
 	public void moveBat(String details)

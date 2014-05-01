@@ -23,6 +23,15 @@ public class C_PongModel extends Observable
   {
 	  player = newPlayer;
   }
+
+  public void setBat(int pNum, GameObject bat)
+  {
+      if(pNum < 0 || pNum > 1)
+          return     ;
+
+      bats[pNum] = bat;
+  }
+
   
   /**
    * Return the Game object representing the ball
