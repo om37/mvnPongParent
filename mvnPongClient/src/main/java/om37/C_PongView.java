@@ -48,9 +48,15 @@ class C_PongView extends JFrame implements Observer
     C_PongModel model = (C_PongModel) aPongModel;
     ball  = model.getBall();
     bats  = model.getBats();
+    calcNewPositions();
     DEBUG.trace( "C_PongView.update" );
     repaint();                              // Re draw game
   }
+
+   public void calcNewPositions()
+   {
+
+   }
 
   public void update( Graphics g )          // Called by repaint
   {

@@ -12,6 +12,7 @@ import junit.framework.TestSuite;
 //Added by me
 import org.junit.*;
 
+//import org.jcheck.*;
 import common.Global;
 import org.mockito.*;
 import junit.*;
@@ -41,12 +42,14 @@ public class PlayerCTest
     @Test
     public void testBallXY()
     {
-        playerUnderTest = new PlayerC(mockModel, mockSocket);
+        playerUnderTest = new PlayerC(mockModel, mockSocket);//use mockito to mock dependancies
         ArgumentCaptor<GameObject> ballCaptor = ArgumentCaptor.forClass(GameObject.class);
         String[] values = new String[]{"0", "1", "2", "3", "4", "5"};
         playerUnderTest.parseDataFromServer(values);
 
         Mockito.verify(mockModel).setBall(ballCaptor.capture());
+        //Mockito's argument captor allows us to capture the parameter sent to a call to a mocked object
+        //We can then use this in jUnit assert statements to test we got the output we desired.
         Assert.assertEquals(ballCaptor.getValue().getX(),Double.parseDouble(values[0]),0);
         Assert.assertEquals(ballCaptor.getValue().getY(),Double.parseDouble(values[1]),0);
     }
@@ -122,6 +125,7 @@ public class PlayerCTest
     @Test(expected=NullPointerException.class)
     public void moveTest()
     {
+        playerUnderTest = new PlayerC(mockModel, mockSocket);
     	playerUnderTest.moveBat("newDetails");
     	String data = (String)playerUnderTest.getReader().get();
     	System.out.println( data );

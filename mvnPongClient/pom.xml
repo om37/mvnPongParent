@@ -10,6 +10,7 @@
 
 	<build>
 		<plugins>
+
 			<!-- SureFire Maven plugin used by Jacoco -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
