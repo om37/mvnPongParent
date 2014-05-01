@@ -12,7 +12,7 @@ public class NetObjectWriter extends ObjectOutputStream
 {
   public NetObjectWriter( Socket s ) throws IOException
   {
-      super( s.getOutputStream() );
+      //super( s.getOutputStream() );
       DEBUG.trace("NetObjectWriter constructor");
   }
 
