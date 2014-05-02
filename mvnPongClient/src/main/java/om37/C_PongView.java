@@ -55,7 +55,7 @@ class C_PongView extends JFrame implements Observer
 
    public void calcNewPositions()
    {
-
+            //
    }
 
   public void update( Graphics g )          // Called by repaint
