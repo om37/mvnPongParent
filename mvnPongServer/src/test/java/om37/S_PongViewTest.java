@@ -25,9 +25,6 @@ public class S_PongViewTest
     @org.junit.Test
     public void updateTest()
     {
-        String s;
-
-
         NetObjectWriter mockWriterOne = Mockito.mock(NetObjectWriter.class);//mock writers to avoid dependencies
         NetObjectWriter mockWriterTwo = Mockito.mock(NetObjectWriter.class);
         S_PongModel mockModel = Mockito.mock(S_PongModel.class);//mock model for call to update()
@@ -51,6 +48,18 @@ public class S_PongViewTest
 
         Assert.assertEquals("2.0,2.0,10.0,10.0", playerOneMessage.getValue().toString());//And validate
         Assert.assertEquals("2.0,2.0,20.0,20.0", playerTwoMessage.getValue().toString());
+    }
+
+    public void anotherTest()
+    {
+        NetObjectWriter mockWriterOne = Mockito.mock(NetObjectWriter.class);//mock writers to avoid dependencies
+        NetObjectWriter mockWriterTwo = Mockito.mock(NetObjectWriter.class);
+        S_PongModel mockModel = Mockito.mock(S_PongModel.class);//mock model for call to update()
+
+        S_PongView viewUnderTest = Mockito.spy(new S_PongView(mockWriterOne,mockWriterTwo));//spy on our view
+
+        viewUnderTest.setWriters(mockWriterOne,mockWriterTwo);
+        Assert.assertTrue(true);
     }
 
 }
