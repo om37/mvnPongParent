@@ -85,17 +85,22 @@ public class PlayerCTest
     {
     	C_PongModel playersModel = playerUnderTest.getModel();
     	    	
-    	String newValues = "5,5,5,5,5,5";
-    	playerUnderTest.parseDataFromServer(newValues.split(","));
-    	
-    	double testValue = (double)Double.parseDouble("5");
+    	String stringValues = "1,2,3,4,5,6";
+
+        String[] vals = stringValues.split(",");
+        double[] testValues = new double[6];
+
+        for(int i = 0; i < vals.length;i++)
+            testValues[i] = Double.parseDouble(vals[i]);
+
+    	playerUnderTest.parseDataFromServer(vals);
     	 	
-    	Assert.assertEquals(testValue , playersModel.getBall().getX(), 0.0);
-    	Assert.assertEquals(testValue , playersModel.getBall().getY(), 0.0);
-    	Assert.assertEquals(testValue , playersModel.getBats()[0].getX(), 0.0);
-    	Assert.assertEquals(testValue , playersModel.getBats()[0].getY(), 0.0);
-    	Assert.assertEquals(testValue , playersModel.getBats()[1].getX(), 0.0);
-    	Assert.assertEquals(testValue , playersModel.getBats()[1].getY(), 0.0);
+    	Assert.assertEquals(testValues[0] , playersModel.getBall().getX(), 0.0);
+    	Assert.assertEquals(testValues[1] , playersModel.getBall().getY(), 0.0);
+    	Assert.assertEquals(testValues[2] , playersModel.getBats()[0].getX(), 0.0);
+    	Assert.assertEquals(testValues[3] , playersModel.getBats()[0].getY(), 0.0);
+    	Assert.assertEquals(testValues[4] , playersModel.getBats()[1].getX(), 0.0);
+    	Assert.assertEquals(testValues[5] , playersModel.getBats()[1].getY(), 0.0);
     	
     }
     
@@ -116,20 +121,4 @@ public class PlayerCTest
     {
     	playerUnderTest.parseDataFromServer(new String[]{"0","1","2","3","4"});
     }
-    
-    /*
-     * Currently doesn't really work
-     * Can't find a way to initialise socket as can't create a connection in testing
-     * Leading to writer being null
-     */
-    @Test(expected=NullPointerException.class)
-    public void moveTest()
-    {
-        playerUnderTest = new PlayerC(mockModel, mockSocket);
-    	playerUnderTest.moveBat("newDetails");
-    	String data = (String)playerUnderTest.getReader().get();
-    	System.out.println( data );
-    	Assert.assertTrue(true);
-    }
 }
-;
