@@ -25,6 +25,9 @@ public class S_PongViewTest
     @org.junit.Test
     public void updateTest()
     {
+        String s;
+
+
         NetObjectWriter mockWriterOne = Mockito.mock(NetObjectWriter.class);//mock writers to avoid dependencies
         NetObjectWriter mockWriterTwo = Mockito.mock(NetObjectWriter.class);
         S_PongModel mockModel = Mockito.mock(S_PongModel.class);//mock model for call to update()
@@ -32,8 +35,11 @@ public class S_PongViewTest
         S_PongView viewUnderTest = Mockito.spy(new S_PongView(mockWriterOne,mockWriterTwo));//spy on our view
 
         Mockito.when(mockModel.getBall()).thenReturn(new GameObject(2,2,2,2));//setup return for getBall
-        Mockito.when(mockModel.getBats()).
-                thenReturn(new GameObject[]{new GameObject(10, 10, 5, 5), new GameObject(20, 20, 10, 10)});//And call to getBats
+        Mockito.when(mockModel.getBats()).                                    //And call to getBats
+                thenReturn(new GameObject[]{
+                    new GameObject(10, 10, 5, 5),
+                    new GameObject(20, 20, 10, 10)}
+        );
 
         ArgumentCaptor<Object> playerOneMessage = ArgumentCaptor.forClass(Object.class);
         ArgumentCaptor<Object> playerTwoMessage = ArgumentCaptor.forClass(Object.class);
