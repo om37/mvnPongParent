@@ -42,6 +42,7 @@ class S_PongView implements Observer
     // Now need to send position of game objects to the client
     //  as the model on the server has changed
 
+      /*
       String sendOne = ball.getX()+","+ball.getY()+","+
               bats[0].getX()+","+bats[0].getY();
       String sendTwo = ball.getX()+","+ball.getY()+","+
@@ -49,8 +50,8 @@ class S_PongView implements Observer
 
       left.put(sendOne);
       right.put(sendTwo);
+        */
 
-      /*
     String send =
     		ball.getX()+","+ball.getY()+","+
     		bats[0].getX()+","+bats[0].getY()+","+
@@ -60,7 +61,7 @@ class S_PongView implements Observer
     left.put( send );
     
     right.put( send );
-    */
+
   }
 
   

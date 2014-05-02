@@ -65,7 +65,7 @@ class PlayerC extends Thread
 			parseDataFromServer(newCoords);
 
 			//Call to update observers
-			model.modelChanged();
+
 		}
 	}
 
@@ -113,6 +113,8 @@ class PlayerC extends Thread
 		model.setBat(0, newBats[0]);
         model.setBat(1, newBats[1]);
         model.setBats(newBats);
+
+        model.modelChanged();
 	}
 
 	public void moveBat(String details)
