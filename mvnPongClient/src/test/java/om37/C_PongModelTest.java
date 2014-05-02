@@ -30,24 +30,7 @@ public class C_PongModelTest
     @org.jcheck.annotations.Configuration(tests = 100)
     public void testPingCalc(long in, long out)
     {
-        count++;
-        System.out.println("Test " + count + ": " + in+" "+out);
         C_PongModel modelUnderTest = new C_PongModel();
-        modelUnderTest.setTimeIn(in);
-        modelUnderTest.setTimeOut(out);
-        long expected = out-in;
-        long result = modelUnderTest.getTimeDifference();
-
-        Assert.assertEquals(expected,result);
-    }
-
-    @Test
-    public void testPingCalc()
-    {
-        C_PongModel modelUnderTest = new C_PongModel();
-        long in = new Random().nextLong();
-        long out = new Random().nextLong();
-
         modelUnderTest.setTimeIn(in);
         modelUnderTest.setTimeOut(out);
         long expected = out-in;
@@ -61,7 +44,11 @@ public class C_PongModelTest
     public void testParseDataFromServer(double[] values)
     {
         count++;
-        System.out.println(count);
+        String s = "Test " +count+": was supplied with: ";
+        for(double d:values)
+            s+=String.valueOf(d) +",";
+
+        System.out.println(s);
 
         PlayerC playerUnderTest = new PlayerC(new C_PongModel(), Mockito.mock(Socket.class));
         C_PongModel playersModel = playerUnderTest.getModel();

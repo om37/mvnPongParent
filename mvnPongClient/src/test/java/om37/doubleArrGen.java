@@ -11,6 +11,8 @@ package om37;
 import org.jcheck.*;
 import org.jcheck.generator.Gen;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Random;
 
 public class doubleArrGen implements Gen<double[]>
@@ -18,8 +20,9 @@ public class doubleArrGen implements Gen<double[]>
     public double[] arbitrary(Random rnd, long size)
     {
         double[] arr = new double[6];
+        DecimalFormat df = new DecimalFormat("#.##");
         for(int i = 0; i < arr.length; i++)
-            arr[i] = rnd.nextDouble();
+            arr[i] = Double.parseDouble( df.format(rnd.nextDouble()) );
 
         return arr;
     }
