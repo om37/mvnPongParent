@@ -14,6 +14,8 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.net.Socket;
+import java.util.Random;
+
 import org.jcheck.*;
 
 /**
@@ -28,9 +30,24 @@ public class C_PongModelTest
     @org.jcheck.annotations.Configuration(tests = 100)
     public void testPingCalc(long in, long out)
     {
-        //count++;
-        //System.out.println("Test " + count + ": " + in+" "+out);
+        count++;
+        System.out.println("Test " + count + ": " + in+" "+out);
         C_PongModel modelUnderTest = new C_PongModel();
+        modelUnderTest.setTimeIn(in);
+        modelUnderTest.setTimeOut(out);
+        long expected = out-in;
+        long result = modelUnderTest.getTimeDifference();
+
+        Assert.assertEquals(expected,result);
+    }
+
+    @Test
+    public void testPingCalc()
+    {
+        C_PongModel modelUnderTest = new C_PongModel();
+        long in = new Random().nextLong();
+        long out = new Random().nextLong();
+
         modelUnderTest.setTimeIn(in);
         modelUnderTest.setTimeOut(out);
         long expected = out-in;
