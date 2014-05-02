@@ -101,7 +101,6 @@ public class PlayerCTest
     	Assert.assertEquals(testValues[3] , playersModel.getBats()[0].getY(), 0.0);
     	Assert.assertEquals(testValues[4] , playersModel.getBats()[1].getX(), 0.0);
     	Assert.assertEquals(testValues[5] , playersModel.getBats()[1].getY(), 0.0);
-    	
     }
     
     @Test(expected = NumberFormatException.class)

@@ -12,6 +12,33 @@ public class C_PongModel extends Observable
   private GameObject ball   = new GameObject( W/2, H/2, BALL_SIZE, BALL_SIZE );
   private GameObject bats[] = new GameObject[2];
   private PlayerC player;
+  private long timeIn;
+  private long timeOut;
+
+  public void setTimeIn(long t)
+  {
+      timeIn = t;
+  }
+
+    public long getTimeIn()
+    {
+        return timeIn;
+    }
+
+    public void setTimeOut(long t)
+    {
+        timeOut = t;
+    }
+
+    public long getTimeOut()
+    {
+        return timeOut;
+    }
+
+    public long getTimeDifference()
+    {
+        return timeOut - timeIn;
+    }
 
   public C_PongModel()
   {
